@@ -1,0 +1,14 @@
+{
+  "name": "primer_video",
+  "version": "1.0.0",
+  "description": "Primer video de la clase de expertos, link del video: https://www.youtube.com/watch?v=CWJ84RA7LyI&feature=youtu.be&ab_channel=ErickVladimirReyesMar%C3%ADn",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Antony Brenes (MilanDroid)",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
