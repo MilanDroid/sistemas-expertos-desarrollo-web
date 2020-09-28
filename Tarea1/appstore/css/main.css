@@ -19,6 +19,7 @@ body {
     background-color: var(--brand-color);
     border: #ffc107;
     color: var(--brand-white);
+    cursor: pointer;
 }
 
 .card-active .icon-star {color: var(--brand-color);}
