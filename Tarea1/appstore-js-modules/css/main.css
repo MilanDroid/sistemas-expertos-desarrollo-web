@@ -15,12 +15,12 @@ body {
 .text-brand {color: var(--brand-color);}
 
 .principal-category-selector {font-size: 2rem !important;}
-.card-active:hover {
+.card-app:hover {
     background-color: var(--brand-color);
     border: #ffc107;
     color: var(--brand-white);
     cursor: pointer;
 }
 
-.card-active .icon-star {color: var(--brand-color);}
-.card-active:hover .icon-star {color: var(--brand-white);}
+.card-app .icon-star {color: var(--brand-color);}
+.card-app:hover .icon-star {color: var(--brand-white);}

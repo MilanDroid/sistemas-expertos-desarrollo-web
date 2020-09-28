@@ -1,11 +1,9 @@
 import {market, list} from "./Market.js";
-import appDetail from "./Apps.js";
 import {options,  appsByCategory} from './Categories.js';
 
 var store = localStorage.getItem('appstore');
 const storeMenu = document.getElementById('apps-menu');
 const categories = document.getElementById('categoria');
-const showDetailApp = appDetail;
 
 if (!store) {
     store = market();
@@ -24,4 +22,11 @@ categories.addEventListener('change', () => {
     } else {
         storeMenu.innerHTML = appsByCategory(category, store);
     }
+});
+
+$(document).ready(() => {
+    $('.card.card-app:not([data-app-code=""])').click(() => {
+        $(this).addClass('bg-danger');
+        console.log('test');
+    });
 });

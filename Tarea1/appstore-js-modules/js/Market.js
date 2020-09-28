@@ -56,8 +56,8 @@ const list = ((store) => {
             const price = aplicacion.cost > 0.5 ? '$'+aplicacion.cost:'FREE';
             let card = `
             <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6" data-app-category="${element.nombreCategoria}"
-            data-app-code="${element.codigo}" data-price-code="${price}" onClick="showDetailApp(this)">
-            <div class="card card-active p-2 my-2">
+            data-app-code="${aplicacion.codigo}" data-price-code="${price}" data-toggle="modal" data-target="#apps-detail">
+            <div class="card card-app p-2 my-2">
             <img src="${aplicacion.icono}" srcset="${aplicacion.icono}" class="card-img-top" alt="Logo ${aplicacion.nombre}">
             <div class="card-body py-1 px-0">
             <h5 class="card-title">${aplicacion.nombre}</h5>
