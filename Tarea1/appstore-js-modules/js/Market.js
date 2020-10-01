@@ -1,3 +1,4 @@
+import stars from "./Stars.js";
 //Codigo para generar información de categorias y almacenarlas en un arreglo.
 const market = (() => {
     let categorias = [];
@@ -47,32 +48,29 @@ const market = (() => {
     return categorias;
 });
 
+
+/**
+ * Retorna una lista completa de las palicaciones almacenadas
+ * @param {JSON} store
+ * @returns {String}
+ */
 const list = ((store) => {
     let content = '';
-    store.forEach( (element) => {
+    store.forEach( (element, key) => {
         const aplicaciones = element.aplicaciones;
 
         aplicaciones.forEach((aplicacion) => {
             const price = aplicacion.cost > 0.5 ? '$'+aplicacion.cost:'FREE';
+            const calificacion = stars(aplicacion.calificacion, '', '', false);
             let card = `
-            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6" data-app-category="${element.nombreCategoria}"
-            data-app-code="${aplicacion.codigo}" data-price-code="${price}" data-toggle="modal" data-target="#apps-detail">
-            <div class="card card-app p-2 my-2">
+            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6">
+            <div class="card card-app p-2 my-2" data-app-category="${key}" data-app-code="${aplicacion.codigo}"
+            data-price-code="${price}" data-toggle="modal" data-target="#apps-detail">
             <img src="${aplicacion.icono}" srcset="${aplicacion.icono}" class="card-img-top" alt="Logo ${aplicacion.nombre}">
             <div class="card-body py-1 px-0">
             <h5 class="card-title">${aplicacion.nombre}</h5>
             <h6 class="card-subtitle">${aplicacion.desarrollador}</h6>
-            <div class="icon-star py-2">`;
-
-            for (let index = 1; index <= 5; index++) {
-                if (aplicacion.calificacion >= index) {
-                    card += '<i class="fas fa-star"></i>';
-                } else {
-                    card += '<i class="far fa-star"></i>';
-                }
-            }
-
-            card += `</div>
+            <div class="icon-star py-2">${calificacion}</div>
             <h5 class="card-title font-weight-bold">${price}</h5>
             </div>
             </div>

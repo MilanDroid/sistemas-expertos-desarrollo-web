@@ -1,9 +1,13 @@
 import {market, list} from "./Market.js";
+import appDetail from "./Apps.js";
 import {options,  appsByCategory} from './Categories.js';
 
 var store = localStorage.getItem('appstore');
 const storeMenu = document.getElementById('apps-menu');
 const categories = document.getElementById('categoria');
+const appDetailModal = document.getElementById('apps-detail-content');
+
+const showDetailApp = appDetail;
 
 if (!store) {
     store = market();
@@ -25,8 +29,9 @@ categories.addEventListener('change', () => {
 });
 
 $(document).ready(() => {
-    $('.card.card-app:not([data-app-code=""])').click(() => {
-        $(this).addClass('bg-danger');
-        console.log('test');
+    $('.card.card-app:not([data-app-code=""])').click((el) => {
+        const appCode = el.currentTarget.dataset.appCode - 1;
+        const appCategory = el.currentTarget.dataset.appCategory;
+        appDetailModal.innerHTML = showDetailApp(store[appCategory].aplicaciones[appCode]);
     });
 });
