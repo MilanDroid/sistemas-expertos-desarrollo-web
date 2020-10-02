@@ -5,9 +5,12 @@ import stars from "./Stars.js";
  * @param {JSON} appData
  * @returns {String}
  */
-const appDetail = ((appData)=> {
+const appDetail = ((id, category)=> {
+    const appData = store[category].aplicaciones[id];
+    const appDetailModal = document.getElementById('apps-detail-content');
+
     const price = appData.cost > 0.5 ? '$'+appData.cost:'FREE';
-    const ranking = stars(appData.calificacion, 'text-success', 'text-danger', true);
+
     let carousel = '';
     appData.imagenes.forEach((image, key) => {
         carousel += `
@@ -15,6 +18,7 @@ const appDetail = ((appData)=> {
             <img src="${image}" class="d-block w-100" alt="${image}">
         </div>`;
     });
+
     let comentarios = '';
     appData.comentarios.forEach((comentario) => {
         const calificacion = stars(comentario.calificacion, 'text-primary', 'text-danger', true);
@@ -38,6 +42,7 @@ const appDetail = ((appData)=> {
         <hr>`;
     });
 
+    const ranking = stars(appData.calificacion, 'text-success', 'text-danger', true);
     let content = `<div class="modal-body px-4">
         <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
             <div class="carousel-inner">${carousel}</div>
@@ -71,8 +76,66 @@ const appDetail = ((appData)=> {
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
         ${appData.instalada === false ? '<button type="button" class="btn btn-success">Instalar</button>':''}
     </div>`;
-    console.log(appData);
+    appDetailModal.innerHTML = content;
+});
+
+const appsByCategory = ((category) => {
+    const aplicaciones = store[category].aplicaciones;
+    
+    let content = '';
+    aplicaciones.forEach((aplicacion, key) => {
+        const price = aplicacion.cost > 0.5 ? '$'+aplicacion.cost:'FREE';
+        const calificacion = stars(aplicacion.calificacion, '', '', false);
+        let card = `
+        <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6">
+        <div class="card card-app p-2 my-2" data-app-category="${category}" data-app-id="${key}"
+        data-app-price="${price}" data-toggle="modal" data-target="#apps-detail" onClick="appDetailDispatcher(${key}, ${category})">
+        <img src="${aplicacion.icono}" srcset="${aplicacion.icono}" class="card-img-top" alt="Logo ${aplicacion.nombre}">
+        <div class="card-body py-1 px-0">
+        <h5 class="card-title">${aplicacion.nombre}</h5>
+        <h6 class="card-subtitle">${aplicacion.desarrollador}</h6>
+        <div class="icon-star py-2">${calificacion}</div>
+        <h5 class="card-title font-weight-bold">${price}</h5>
+        </div>
+        </div>
+        </div>`;
+        content += card;
+    });
+    
     return content;
 });
 
-export default appDetail;
+/**
+ * Retorna una lista completa de las palicaciones almacenadas
+ * @param {JSON} store
+ * @returns {String}
+ */
+const appsList = (() => {
+    let content = '';
+    store.forEach( (element, key) => {
+        const aplicaciones = element.aplicaciones;
+
+        aplicaciones.forEach((aplicacion, index) => {
+            const price = aplicacion.cost > 0.5 ? '$'+aplicacion.cost:'FREE';
+            const calificacion = stars(aplicacion.calificacion, '', '', false);
+            let card = `
+            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6">
+            <div class="card card-app p-2 my-2" data-app-category="${key}" data-app-id="${index}"
+            data-app-price="${price}" data-toggle="modal" data-target="#apps-detail" onClick="appDetailDispatcher(${index}, ${key})">
+            <img src="${aplicacion.icono}" srcset="${aplicacion.icono}" class="card-img-top" alt="Logo ${aplicacion.nombre}">
+            <div class="card-body py-1 px-0">
+            <h5 class="card-title">${aplicacion.nombre}</h5>
+            <h6 class="card-subtitle">${aplicacion.desarrollador}</h6>
+            <div class="icon-star py-2">${calificacion}</div>
+            <h5 class="card-title font-weight-bold">${price}</h5>
+            </div>
+            </div>
+            </div>`;
+            content += card;
+        });
+    });
+    
+    return content;
+});
+
+export {appDetail, appsByCategory, appsList};

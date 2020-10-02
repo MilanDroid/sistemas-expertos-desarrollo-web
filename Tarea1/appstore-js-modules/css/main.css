@@ -4,6 +4,7 @@
  --brand-color: #ffc107;
  --brand-dark: #000;
  --brand-white: #FFFFFF;
+ --brand-light-gray: #f9f9f9;
 }
 
 body {
@@ -17,10 +18,31 @@ body {
 .principal-category-selector {font-size: 2rem !important;}
 .card-app:hover {
     background-color: var(--brand-color);
-    border: #ffc107;
+    border: var(--brand-color);
     color: var(--brand-white);
     cursor: pointer;
 }
 
 .card-app .icon-star {color: var(--brand-color);}
 .card-app:hover .icon-star {color: var(--brand-white);}
+
+
+.avatar {cursor: pointer}
+.avatar-dropdown {position: relative;display: inline-block;} 
+.avatar-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--brand-white);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px var(--brand-dark);;
+    z-index: 1;
+} 
+.avatar-dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+  
+.avatar-dropdown-content a:hover {background-color: var(--brand-color);color: var(--brand-white);}
+.avatar-dropdown:hover .avatar-dropdown-content {display: block}
