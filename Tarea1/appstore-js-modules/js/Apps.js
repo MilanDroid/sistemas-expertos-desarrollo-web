@@ -1,5 +1,8 @@
 import stars from "./Stars.js";
 
+const appPrice = ((price) => {
+    return price > 0.5 ? '$'+price:'FREE';
+});
 /**
  * Retorna el detalle de la aplicacion, imagenes, descripcion, nombre, desarrollador y comentarios
  * @param {JSON} appData
@@ -7,9 +10,8 @@ import stars from "./Stars.js";
  */
 const appDetail = ((id, category)=> {
     const appData = store[category].aplicaciones[id];
+    const price = appPrice(appData.cost);
     const appDetailModal = document.getElementById('apps-detail-content');
-
-    const price = appData.cost > 0.5 ? '$'+appData.cost:'FREE';
 
     let carousel = '';
     appData.imagenes.forEach((image, key) => {
@@ -79,27 +81,30 @@ const appDetail = ((id, category)=> {
     appDetailModal.innerHTML = content;
 });
 
+const appCard = ((aplicacion, appId, categoryKey) => {
+    const price = appPrice(aplicacion.cost);
+    const calificacion = stars(aplicacion.calificacion, '', '', false);
+    const card = `<div class="col-xl-2 col-lg-2 col-md-3 col-sm-6">
+    <div class="card card-app p-2 my-2" data-app-category="${categoryKey}" data-app-id="${appId}"
+    data-app-price="${price}" data-toggle="modal" data-target="#apps-detail" onClick="appDetailDispatcher(${appId}, ${categoryKey})">
+    <img src="${aplicacion.icono}" srcset="${aplicacion.icono}" class="card-img-top" alt="Logo ${aplicacion.nombre}">
+    <div class="card-body py-1 px-0">
+    <h5 class="card-title">${aplicacion.nombre}</h5>
+    <h6 class="card-subtitle">${aplicacion.desarrollador}</h6>
+    <div class="icon-star py-2">${calificacion}</div>
+    <h5 class="card-title font-weight-bold">${price}</h5>
+    </div>
+    </div>
+    </div>`;
+    
+    return card;
+});
+
 const appsByCategory = ((category) => {
     const aplicaciones = store[category].aplicaciones;
-    
     let content = '';
     aplicaciones.forEach((aplicacion, key) => {
-        const price = aplicacion.cost > 0.5 ? '$'+aplicacion.cost:'FREE';
-        const calificacion = stars(aplicacion.calificacion, '', '', false);
-        let card = `
-        <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6">
-        <div class="card card-app p-2 my-2" data-app-category="${category}" data-app-id="${key}"
-        data-app-price="${price}" data-toggle="modal" data-target="#apps-detail" onClick="appDetailDispatcher(${key}, ${category})">
-        <img src="${aplicacion.icono}" srcset="${aplicacion.icono}" class="card-img-top" alt="Logo ${aplicacion.nombre}">
-        <div class="card-body py-1 px-0">
-        <h5 class="card-title">${aplicacion.nombre}</h5>
-        <h6 class="card-subtitle">${aplicacion.desarrollador}</h6>
-        <div class="icon-star py-2">${calificacion}</div>
-        <h5 class="card-title font-weight-bold">${price}</h5>
-        </div>
-        </div>
-        </div>`;
-        content += card;
+        content += appCard(aplicacion, key, category);
     });
     
     return content;
@@ -114,24 +119,8 @@ const appsList = (() => {
     let content = '';
     store.forEach( (element, key) => {
         const aplicaciones = element.aplicaciones;
-
         aplicaciones.forEach((aplicacion, index) => {
-            const price = aplicacion.cost > 0.5 ? '$'+aplicacion.cost:'FREE';
-            const calificacion = stars(aplicacion.calificacion, '', '', false);
-            let card = `
-            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6">
-            <div class="card card-app p-2 my-2" data-app-category="${key}" data-app-id="${index}"
-            data-app-price="${price}" data-toggle="modal" data-target="#apps-detail" onClick="appDetailDispatcher(${index}, ${key})">
-            <img src="${aplicacion.icono}" srcset="${aplicacion.icono}" class="card-img-top" alt="Logo ${aplicacion.nombre}">
-            <div class="card-body py-1 px-0">
-            <h5 class="card-title">${aplicacion.nombre}</h5>
-            <h6 class="card-subtitle">${aplicacion.desarrollador}</h6>
-            <div class="icon-star py-2">${calificacion}</div>
-            <h5 class="card-title font-weight-bold">${price}</h5>
-            </div>
-            </div>
-            </div>`;
-            content += card;
+            content += appCard(aplicacion, index, key);
         });
     });
     
