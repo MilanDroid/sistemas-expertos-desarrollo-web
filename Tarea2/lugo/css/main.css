@@ -1,7 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap');
+:root {
+ --brand-color: #5c3287;
+ --brand-dark-color: #440f71;
+ --brand-hover-dark-color: #3a0d61;
+ --brand-dark: #000;
+ --brand-white: #FFFFFF;
+ --brand-light-gray: #f9f9f9;
+}
+
 body {
-    padding-top: 5rem;
+    padding-top: 6rem;
+    font-family: 'Roboto', sans-serif;
+    text-rendering: optimizeLegibility;
 }
-.starter-template {
-    padding: 3rem 1.5rem;
-    text-align: center;
+
+.bg-lugo {background-color: var(--brand-color);}
+.bg-dark-lugo {background-color: var(--brand-dark-color);}
+button.bg-dark-lugo:hover {background-color: var(--brand-hover-dark-color);}
+
+.text-lugo {color: var(--brand-color);}
+
+.navbar-brand h1 {font-size: 3em;}
+.font-nav-options {font-size: 1.1em;font-weight: 400;}
+.title {font-size: 3.2em;font-weight: 700;}
+.principal-category-selector {font-size: 2rem !important;}
+
+.card-app:hover {
+    background-color: var(--brand-color);
+    border: var(--brand-color);
+    color: var(--brand-white);
+    cursor: pointer;
 }
+.card-app .icon-star {color: var(--brand-color);}
+.card-app:hover .icon-star {color: var(--brand-white);}
+.card-icon {font-size: 4em;}
+.card-rounded {border-radius: 30px;}
+
+.avatar {cursor: pointer}
+.avatar-dropdown {position: relative;display: inline-block;} 
+.avatar-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--brand-white);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px var(--brand-dark);;
+    z-index: 1;
+} 
+.avatar-dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}  
+.avatar-dropdown-content a:hover {background-color: var(--brand-color);color: var(--brand-white);}
+.avatar-dropdown:hover .avatar-dropdown-content {display: block}

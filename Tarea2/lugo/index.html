@@ -1,60 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Lugo</title>
-    <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="css/all.css"><!--FontAwesome-->
-    <link rel="stylesheet" href="css/main.css">
-</head>
-<body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        
-        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-            <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                <div class="dropdown-menu" aria-labelledby="dropdown01">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-            </form>
-        </div>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Lugo</title>
+        <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="css/all.css"><!--FontAwesome-->
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body class="container-fluid">
+        <nav class="navbar navbar-expand-md navbar-dark bg-lugo fixed-top py-2">
+            <a class="navbar-brand ml-5 px-3" href="#"><h1><strong>lugo</strong></h1></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <div class="mr-auto"></div>
+                <form class="form-inline my-2 my-lg-0">
+                    <select class="form-control form-control-lg font-nav-options text-lugo mr-sm-2 px-5 rounded-pill" id="users" aria-label="User" onchange="changeUser(this)">
+                        <option value="">Selecciona tu usuario</option>
+                    </select>
+                    <button class="btn btn-primary-dark bg-dark-lugo text-white font-nav-options form-control form-control-lg mx-3 my-2 my-sm-0 px-5 rounded-pill border-0" type="submit">Ver Ordenes</button>
+                </form>
+            </div>
         </nav>
-        
-        <main role="main" class="container">
-        
-        <div class="starter-template">
-            <img src="img/meme.jpg" alt="" srcset="">
-            <p class="lead">Éxitos</p>
-        </div>
-        
-        </main><!-- /.container -->
-              
-    <script src="js/jquery-3.4.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/controlador.js"></script>
-</body>
+            
+        <main role="main" class="mx-5 mt-2">
+            <div class="row text-left">
+                <div class="col-12 my-4 mx-3">
+                    <h1 class="text-lugo title"><b>¡Hola <span id="user-name">@lugo</span>!</b></h1>
+                    <p><h1 class="text-lugo font-weight-normal">¿Que necesitas?</h1></p>
+                </div>
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-2">
+                            <div class="card-rounded my-3 mx-3 px-3" id="cards-container" style="background-color: #9482C4;">
+                                <div class="py-4">
+                                    <i class="fab fa-angellist card-icon text-white"></i>
+                                </div>
+                                <div><h2 class="text-white font-weight-bolder mt-4">Comida china</h2></div>
+                                <div><h4 class="text-white font-weight-light pb-3">3 Comercios</h4></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+
+        </footer>
+
+        <script src="js/jquery-3.4.1.min.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/Globals.js"></script>
+        <script type="module" src="js/Apps.js"></script>
+    </body>
 </html>
