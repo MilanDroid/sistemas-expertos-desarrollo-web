@@ -2,6 +2,7 @@
 :root {
  --brand-color: #5c3287;
  --brand-dark-color: #440f71;
+ --brand-dark-disabled-color: #3d1e57;
  --brand-hover-dark-color: #3a0d61;
  --brand-dark: #000;
  --brand-white: #FFFFFF;
@@ -9,18 +10,34 @@
 }
 
 body {
+    position: relative;
     padding-top: 6rem;
     font-family: 'Roboto', sans-serif;
     text-rendering: optimizeLegibility;
 }
 
-.bg-lugo {background-color: var(--brand-color);}
-.bg-dark-lugo {background-color: var(--brand-dark-color);}
 button.bg-dark-lugo:hover {background-color: var(--brand-hover-dark-color);}
+select, button, input {
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
 
-.text-lugo {color: var(--brand-color);}
+select {
+    background-repeat: no-repeat;
+    background-image: linear-gradient(45deg, transparent 20%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 20%);
+    background-position: right 20px top 50%, right 15px top 50%;
+    background-size: 5px 5px, 5px 5px;
+}
 
-.navbar-brand h1 {font-size: 3em;}
+.bg-lugo {background-color: var(--brand-color);}
+.bg-dark-lugo, .bg-dark-lugo:focus {background-color: var(--brand-dark-color);}
+.bg-dark-lugo:disabled {background-color: var(--brand-dark-disabled-color);}
+
+.text-lugo, .text-lugo:focus, .text-lugo:active, .text-lugo:hover {color: var(--brand-color);}
+
+.navbar-brand h1 {font-size: 3em;font-weight: 600;}
 .font-nav-options {font-size: 1.1em;font-weight: 400;}
 .title {font-size: 3.2em;font-weight: 700;}
 .principal-category-selector {font-size: 2rem !important;}
@@ -35,6 +52,7 @@ button.bg-dark-lugo:hover {background-color: var(--brand-hover-dark-color);}
 .card-app:hover .icon-star {color: var(--brand-white);}
 .card-icon {font-size: 4em;}
 .card-rounded {border-radius: 30px;}
+.card-rounded-top {border-radius: 30px 30px 0px 0px;}
 
 .avatar {cursor: pointer}
 .avatar-dropdown {position: relative;display: inline-block;} 

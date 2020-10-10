@@ -55,13 +55,42 @@ const users = [
     }
 ];
 
-const optionUsers = (element) => {
-    let options = `<option value="">Selecciona tu usuario</option>`;
+const optionUsers = ((element) => {
+    let options = `<option value="" disabled selected>Selecciona tu usuario</option>`;
 
     users.forEach((user, key) => {
-        options += `<option val="${key}">${user.nombre}</option>`;
+        options += `<option value="${key}">${user.nombre} ${user.apellido}</option>`;
     });
 
     element.innerHTML = options;
-};
-export {users, optionUsers};
+});
+
+const showOrdersByUser = ((titleElement, bodyElement) => {
+    const modalTitle = document.getElementById(titleElement);
+    const modalBody = document.getElementById(bodyElement);
+    let bodyContent = `<div class="card w-75 mx-auto card-rounded">
+    <div class="card-body">`;
+
+    modalTitle.innerHTML = `${actualUser.nombre}, Estas son tus ordenes`;
+    
+    actualUser.ordenes.forEach((order, key) => {
+        bodyContent += `<h4 class="card-title text-lugo">${order.nombreProducto}</h4>
+        <p class="card-text">${order.descripcion}</p>
+        <div class="text-right">
+            <span class="text-secondary ml-auto"><b>$${order.precio}</b></span>
+        </div>`;
+
+        if ( actualUser.ordenes.length > (key+1) ) {
+            bodyContent += '<div class="my-3"><hr></div>';
+        }
+    });
+
+    bodyContent += `</div></div>`;
+    modalBody.innerHTML = bodyContent;
+});
+
+const addOrderToUser = ((nombre, descripcion, precio) => {
+    console.log(nombre, descripcion, precio);
+});
+
+export {users, optionUsers, showOrdersByUser, addOrderToUser};

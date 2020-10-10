@@ -9,9 +9,9 @@
         <link rel="stylesheet" href="css/all.css"><!--FontAwesome-->
         <link rel="stylesheet" href="css/main.css">
     </head>
-    <body class="container-fluid">
+    <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-lugo fixed-top py-2">
-            <a class="navbar-brand ml-5 px-3" href="#"><h1><strong>lugo</strong></h1></a>
+            <a class="navbar-brand ml-md-5 px-3" href="#"><h1 class="display-1"><strong>lugo</strong></h1></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -19,39 +19,58 @@
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                 <div class="mr-auto"></div>
                 <form class="form-inline my-2 my-lg-0 text-md-center">
-                    <select class="form-control form-control-lg font-nav-options text-lugo mr-sm-2 px-5 rounded-pill" id="users" aria-label="User" onchange="changeUser(this)">
-                        <option value="">Selecciona tu usuario</option>
+                    <select class="form-control form-control-lg font-nav-options text-lugo mx-sm-auto mx-md-auto px-5 rounded-pill border-0" id="users" aria-label="User" onchange="changeUser(this)">
+                        <option value="" disabled selected>Selecciona tu usuario</option>
                     </select>
-                    <button class="btn btn-primary-dark bg-dark-lugo text-white font-nav-options form-control form-control-lg mx-md-3 my-2 my-sm-0 px-5 rounded-pill border-0" type="submit">Ver Ordenes</button>
+                    <button class="btn btn-primary-dark bg-dark-lugo text-white
+                    font-nav-options form-control form-control-lg mx-xl-3 mx-lg-3 mx-md-auto mx-sm-auto
+                    my-2 my-sm-0 px-5 rounded-pill border-0" id="btn-view-orders" type="button"
+                    data-toggle="modal" data-target="#details-modal" onclick="loadOrders('detail-title', 'detail-body')" disabled>Ver Ordenes</button>
                 </form>
             </div>
         </nav>
-            
-        <main role="main" class="mx-5 mt-2">
-            <div class="row text-left">
-                <div class="col-12 my-4 mx-3">
-                    <h1 class="text-lugo title"><b>¡Hola <span id="user-name">@lugo</span>!</b></h1>
-                    <p><h1 class="text-lugo font-weight-normal">¿Que necesitas?</h1></p>
+
+        <div class="container-fluid" style="min-height: 75vh;">
+            <main role="main" class="mx-md-5 mt-2">
+                <div class="row text-left">
+                    <div class="col-12 my-4 mx-3">
+                        <h1 class="text-lugo title"><b>¡Hola <span id="user-name">@lugo</span>!</b></h1>
+                        <p><h1 class="text-lugo font-weight-light">¿Que necesitas?</h1></p>
+                    </div>
+                    <div class="col-12">
+                        <div class="row" id="categories-menu"></div>
+                    </div>
                 </div>
-                <div class="col-12">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                            <div class="card-rounded my-3 mx-3 px-3" id="cards-container" style="background-color: #9482C4;">
-                                <div class="py-4">
-                                    <i class="fab fa-angellist card-icon text-white"></i>
-                                </div>
-                                <div><h2 class="text-white font-weight-bolder mt-4">Comida china</h2></div>
-                                <div><h4 class="text-white font-weight-light pb-3">3 Comercios</h4></div>
-                            </div>
-                        </div>
+            </main>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="details-modal" tabindex="-1" role="dialog" aria-labelledby="details-modal-title" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                <div class="modal-content card-rounded" id="details-modal-content">
+                    <div class="modal-header px-md-5 py-md-3 bg-lugo">
+                      <h1 class="modal-title text-white font-weight-bold" id="detail-title"></h1>
+                    </div>
+                    <div class="modal-body py-5 mx-md-5" id="detail-body"></div>
+                    <div class="modal-body px-md-5 py-md-5 text-right">
+                        <button type="button" class="btn btn-primary-dark bg-dark-lugo rounded-pill text-white px-5" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
             </div>
-        </main>
-
-        <footer>
-
-        </footer>
+        </div>
+        
+        <!-- Modal Add order-->
+        <div class="modal fade" id="add-order-modal" tabindex="-1" role="dialog" aria-labelledby="add-order-modal-title" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content card-rounded" id="add-order-modal-content">
+                    <div class="modal-body py-5 mx-md-5" id="detail-body"></div>
+                    <div class="modal-body px-md-5 py-md-5 text-right">
+                        <button type="button" class="btn btn-primary-dark bg-dark-lugo rounded-pill text-white px-5" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer class="bg-lugo py-5 mx-0 mt-5"></footer>
 
         <script src="js/jquery-3.4.1.min.js"></script>
         <script src="js/popper.min.js"></script>

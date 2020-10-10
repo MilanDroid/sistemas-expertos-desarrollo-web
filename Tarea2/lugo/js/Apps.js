@@ -1,32 +1,41 @@
-import {users, optionUsers} from "./Users.js";
-import categories from "./Categories.js";
+import {users, optionUsers, showOrdersByUser, addOrderToUser} from "./Users.js";
+import {categories, categoriesCards, showCategoryDetail} from "./Categories.js";
 
-usersStorage = localStorage.getItem('users');
-categoriesStorage = localStorage.getItem('categories');
+usersStorage = localStorage.getItem('usuarios');
+categoriesStorage = localStorage.getItem('categorias');
 const selectUsers = document.getElementById('users');
-const userName = document.getElementById('user-name');
+const categoriesMenu = document.getElementById('categories-menu');
 
 if (!usersStorage) {
     usersStorage = users;
-    localStorage.setItem('users', JSON.stringify(usersStorage));
+    localStorage.clear();
+    localStorage.setItem('usuarios', JSON.stringify(usersStorage));
 } else {
     usersStorage = JSON.parse(usersStorage);
 }
 
 if (!categoriesStorage) {
     categoriesStorage = categories;
-    localStorage.setItem('categories', JSON.stringify(categoriesStorage));
+    localStorage.setItem('categorias', JSON.stringify(categoriesStorage));
 } else {
     categoriesStorage = JSON.parse(categoriesStorage);
 }
 
 optionUsers(selectUsers);
+categoriesCards(categoriesStorage, categoriesMenu);
+
+loadOrders = showOrdersByUser;
+categoryDetail = showCategoryDetail;
+addOrder = addOrderToUser;
 
 changeUser = (element) => {
     if (element.value) {
-        userName.innerHTML = element.value;
+        actualUser = usersStorage[element.value];
+        document.getElementById('user-name').innerHTML = actualUser.nombre;
+        document.getElementById('btn-view-orders').removeAttribute('disabled');
     } else {
         userName.innerHTML = '@lugo';
+        document.getElementById('btn-view-orders').setAttribute('disabled');
     }
 }
 
