@@ -1,5 +1,5 @@
 import market from "./Market.js";
-import {appDetail, appsByCategory, appsList} from "./Apps.js";
+import {appDetail, appsByCategory, appsList, formAddApp, addStoreApp, formRemoveApp, removeStoreApp} from "./Apps.js";
 import options from './Categories.js';
 
 store = localStorage.getItem('appstore');
@@ -18,6 +18,10 @@ storeMenu.innerHTML = appsList();
 categories.innerHTML = options();
 
 appDetailDispatcher = appDetail;
+showFormAddApp = formAddApp;
+addApp = addStoreApp;
+showRemoveApp = formRemoveApp;
+removeApp = removeStoreApp;
 
 categories.addEventListener('change', () => {
     const category = categories.value;

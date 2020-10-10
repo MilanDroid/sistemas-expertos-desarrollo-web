@@ -127,4 +127,117 @@ const appsList = (() => {
     return content;
 });
 
-export {appDetail, appsByCategory, appsList};
+const formAddApp = (() => {
+    const appDetailModal = document.getElementById('apps-detail-content');
+
+    let content = `<div class="row px-4 pt-4 p-md-3">
+        <div class="col-12">
+            <h3 class="my-0"><b>Agregar una app</b></h3>
+        </div>
+        <div class="col-12 pt-4">
+            <form>
+                <div class="form-group">
+                    <label for="app-name" class="col-form-label">Nombre de la app:</label>
+                    <input type="text" class="form-control" id="app-name">
+                </div>
+                <div class="form-group">
+                    <label for="app-categoria" class="col-form-label">ID Categoria de la app:</label>
+                    <input type="text" class="form-control" id="app-categoria">
+                </div>
+                <div class="form-group">
+                    <label for="app-desarrollador" class="col-form-label">Desarrollador de la app:</label>
+                    <input type="text" class="form-control" id="app-desarrollador">
+                </div>
+                <div class="form-group">
+                    <label for="app-descripcion" class="col-form-label">Descripcion de la app:</label>
+                    <input type="text" class="form-control" id="app-descripcion">
+                </div>
+                <div class="form-group">
+                    <label for="app-precio" class="col-form-label">Precio de la app:</label>
+                    <input type="text" class="form-control" id="app-precio">
+                </div>
+            </form>
+        </div>
+    </div>
+    <hr>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal" onclick="addApp()">Agregar</button>
+    </div>`;
+    
+    appDetailModal.innerHTML = content;
+});
+
+const addStoreApp = (() => {
+    const nombre = document.getElementById('app-name').value;
+    const categoria = document.getElementById('app-categoria').value;
+    const desarrollador = document.getElementById('app-desarrollador').value;
+    const descripcion = document.getElementById('app-descripcion').value;
+    const precio = document.getElementById('app-precio').value;
+
+    if (categoria) {
+        store[categoria].aplicaciones.push({
+            app: "app/demo.apk",
+            calificacion: 3,
+            descargas: 1000,
+            imagenes: [],
+            icono: "img/app-icons/2.webp",
+            instalada: false,
+            comentarios: [],
+            codigo: store[categoria].aplicaciones.length + 1,
+            nombre: nombre,
+            descripcion: descripcion,
+            desarrollador: desarrollador,
+            cost: precio
+        });
+        localStorage.setItem('appstore', JSON.stringify(store));
+        alert('Aplicacion guardada');
+    } else {
+        alert('La categoria ingresada no existe');
+    }
+});
+
+const formRemoveApp = (() => {
+    const appDetailModal = document.getElementById('apps-detail-content');
+
+    let content = `<div class="row px-4 pt-4 p-md-3">
+        <div class="col-12">
+            <h3 class="my-0"><b>Eliminar una app</b></h3>
+        </div>
+        <div class="col-12 pt-4">
+            <form>
+                <div class="form-group">
+                    <label for="app-id" class="col-form-label">Id de la app:</label>
+                    <input type="text" class="form-control" id="app-id">
+                </div>
+                <div class="form-group">
+                    <label for="app-categoria-id" class="col-form-label">ID Categoria de la app:</label>
+                    <input type="text" class="form-control" id="app-categoria-id">
+                </div>
+            </form>
+        </div>
+    </div>
+    <hr>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="removeApp()">Eliminar</button>
+    </div>`;
+    
+    appDetailModal.innerHTML = content;
+});
+
+const removeStoreApp = (() => { 
+    const app = document.getElementById('app-id').value;
+    const categoria = document.getElementById('app-categoria-id').value;
+
+    if (categoria) {
+        store[categoria].aplicaciones.splice(app, 1);
+        localStorage.setItem('appstore', JSON.stringify(store));
+        alert('Aplicacion eliminada');
+        document.getElementById('apps-menu').innerHTML = appsList();
+    } else {
+        alert('La categoria ingresada no existe');
+    }
+});
+
+export {appDetail, appsByCategory, appsList, formAddApp, addStoreApp, formRemoveApp, removeStoreApp};
