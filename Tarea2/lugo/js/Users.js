@@ -56,13 +56,17 @@ const users = [
 ];
 
 const optionUsers = ((element) => {
-    let options = `<option value="" disabled selected>Selecciona tu usuario</option>`;
+    let options = "";
 
-    users.forEach((user, key) => {
-        options += `<option value="${key}">${user.nombre} ${user.apellido}</option>`;
+    usersStorage.forEach((user, key) => {
+        options += `<option value="${key}" ${key == 0 ? 'selected':''}>${user.nombre} ${user.apellido}</option>`;
     });
 
     element.innerHTML = options;
+
+    actualUser = usersStorage[element.value];
+    document.getElementById('user-name').innerHTML = actualUser.nombre;
+    document.getElementById('btn-view-orders').removeAttribute('disabled');
 });
 
 const showOrdersByUser = ((titleElement, bodyElement) => {
@@ -90,7 +94,39 @@ const showOrdersByUser = ((titleElement, bodyElement) => {
 });
 
 const addOrderToUser = ((nombre, descripcion, precio) => {
-    console.log(nombre, descripcion, precio);
+    const cantidad = document.getElementById('add-order-count');
+    const user = document.getElementById('users').value;
+    
+    usersStorage[user].ordenes.push({
+        nombreProducto: nombre,
+        descripcion: descripcion,
+        cantidad: cantidad,
+        precio: precio
+    });
+
+    localStorage.setItem('usuarios', JSON.stringify(usersStorage));
 });
 
-export {users, optionUsers, showOrdersByUser, addOrderToUser};
+const showAddOrderModal = ((nombre, descripcion, precio) => {
+    const modalBody = document.getElementById('detail-add-order-body');
+
+    modalBody.innerHTML = `<h4 class="text-lugo font-weight-normal">${nombre}</h4>
+    <p class="card-text">${descripcion}</p>
+    <form>
+        <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Cantidad a solicitar:</label>
+            <input type="text" class="form-control form-control-sm" id="add-order-count">
+        </div>
+    </form>
+    <p class="card-text text-right py-0 my-0 mt-2">
+        <span class="text-secondary ml-auto"><b>$${precio}</b></span>
+    </p>
+    <div class="modal-footer text-right">
+        <button type="button"
+        class="btn btn-primary-dark bg-dark-lugo rounded-pill text-white px-5"
+        data-dismiss="modal"
+        onclick="addOrder('${nombre}', '${descripcion}', ${precio})">Procesar orden</button>
+    </div>`;
+});
+
+export {users, optionUsers, showOrdersByUser, addOrderToUser, showAddOrderModal};

@@ -23,6 +23,7 @@ select, button, input {
     -webkit-appearance: none;
     -moz-appearance: none;
 }
+input[type="text"] {cursor: text;}
 
 select {
     background-repeat: no-repeat;

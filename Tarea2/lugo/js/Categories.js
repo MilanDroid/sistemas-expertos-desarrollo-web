@@ -463,7 +463,7 @@ const showCategoryDetail = ((titleElement, bodyElement, categoryId) => {
 
     let bodyContent = `<div class="row">`;
     category.empresas.forEach((empresa) => {
-        bodyContent += `<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+        bodyContent += `<div class="col-xl-6 col-lg-12 col-md-12 col-sm-12">
         <div class="card card-rounded m-3">
         <img class="card-img-top card-rounded-top w-100" src="${empresa.imagen}" srcset="${empresa.imagen}" alt="${empresa.nombreEmpresa}">
         <div class="card-body">
@@ -476,8 +476,8 @@ const showCategoryDetail = ((titleElement, bodyElement, categoryId) => {
                 </div>
                 <div class="col-6 text-right">
                     <button type="button" class="btn btn-primary-dark bg-dark-lugo rounded-pill text-white px-5"
-                    onclick="addOrder('${producto.nombreProducto}', '${producto.descripcion}', ${producto.precio})"
-                    data-toggle="modal" data-target="#add-order-modal">Pedir</button>
+                    onclick="showAddOrder('${producto.nombreProducto}', '${producto.descripcion}', ${producto.precio})"
+                    data-toggle="modal" data-target="#add-order-modal" data-dismiss="modal">Pedir</button>
                 </div>
             </div>
             <p class="card-text">${producto.descripcion}</p>

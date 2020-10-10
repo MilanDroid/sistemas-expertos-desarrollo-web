@@ -1,4 +1,4 @@
-import {users, optionUsers, showOrdersByUser, addOrderToUser} from "./Users.js";
+import {users, optionUsers, showOrdersByUser, showAddOrderModal, addOrderToUser} from "./Users.js";
 import {categories, categoriesCards, showCategoryDetail} from "./Categories.js";
 
 usersStorage = localStorage.getItem('usuarios');
@@ -26,6 +26,7 @@ categoriesCards(categoriesStorage, categoriesMenu);
 
 loadOrders = showOrdersByUser;
 categoryDetail = showCategoryDetail;
+showAddOrder = showAddOrderModal;
 addOrder = addOrderToUser;
 
 changeUser = (element) => {
@@ -38,6 +39,3 @@ changeUser = (element) => {
         document.getElementById('btn-view-orders').setAttribute('disabled');
     }
 }
-
-console.log ('Usuarios', users);
-console.log ('Categorias', categories);
