@@ -1,0 +1,3 @@
+const recibidos = (() => {});
+
+export {recibidos};

@@ -1,0 +1,3 @@
+const papelera = (() => {});
+
+export {papelera};
