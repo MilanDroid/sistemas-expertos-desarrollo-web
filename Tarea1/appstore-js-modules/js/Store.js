@@ -8,6 +8,7 @@ const categories = document.getElementById('categoria');
 
 if (!store) {
     store = market();
+    localStorage.clear();
     localStorage.setItem('appstore', JSON.stringify(store));
 } else {
     store = JSON.parse(store);
