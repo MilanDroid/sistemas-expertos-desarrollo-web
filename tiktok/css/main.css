@@ -1,0 +1,93 @@
+@font-face {
+    font-family: "Proxima-nova";
+    src: url('../assets/fonts/proxima-nova-regular.woff2') format('woff2');
+}
+@font-face {
+    font-family: "Sofia-pro";
+    src: url('../assets/fonts/sofiapro-bold.woff') format('woff');
+}
+
+:root {
+ --brand-color: #fe2c55;
+ --brand-dark-color: #bf3c30;
+ --brand-disabled-color: #b55850;
+ --brand-hover-dark-color: #ab3329;
+
+ --brand-background-color: #fce8e6;
+ --brand-light-color: #fce8e6;
+ --brand-white: #FFFFFF;
+
+ --brand-dark: #404040;
+ --brand-gray: #5d6165;
+ --brand-gray-tiny: #f0f2f3;
+ --brand-light-gray: #fafafa;
+}
+
+body {
+    position: relative;
+    font-family: 'Proxima-nova', sans-serif !important;
+    text-rendering: optimizeLegibility;
+    background-color: var(--brand-light-gray);
+    width: 100%;
+}
+
+button.bg-dark-brand:hover {background-color: var(--brand-hover-dark-color);}
+select, button, input {
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+input[type="text"] {cursor: text;}
+select {
+    background-repeat: no-repeat;
+    background-image: linear-gradient(45deg, transparent 20%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 20%);
+    background-position: right 20px top 50%, right 15px top 50%;
+    background-size: 5px 5px, 5px 5px;
+}
+
+.bg-brand {background-color: var(--brand-color);}
+button.bg-brand:hover, .bg-brand:focus, .bg-brand:active {background-color: var(--brand-dark-color);}
+button.bg-brand:disabled {background-color: var(--brand-disabled-color);}
+
+.bg-light-brand {background-color: var(--brand-background-color);}
+.bg-gray-tiny {background-color: var(--brand-gray-tiny);}
+.bg-gray-light {background-color: var(--brand-light-gray);}
+
+.text-brand, .text-brand:focus, .text-brand:active, .text-brand:hover {color: var(--brand-color);}
+.text-brand-dark, .text-brand-dark:focus, .text-brand-dark:active, .text-brand-dark:hover {color: var(--brand-dark) !important;}
+
+.font-sofia-pro {font-family: 'Sofia-pro', Arial, Helvetica, sans-serif !important;}
+
+.card-app:hover {
+    background-color: var(--brand-color);
+    border: var(--brand-color);
+    color: var(--brand-white);
+    cursor: pointer;
+}
+.card-app .icon-star {color: var(--brand-color);}
+.card-app:hover .icon-star {color: var(--brand-white);}
+.card-icon {font-size: 4em;}
+.card-rounded {border-radius: 30px;}
+.card-rounded-top {border-radius: 30px 30px 0px 0px;}
+
+.rounded-pill-right {border-radius: 0px 30px 30px 0px;}
+
+.avatar {cursor: pointer}
+.avatar-dropdown {position: relative;display: inline-block;} 
+.avatar-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--brand-white);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px var(--brand-dark);;
+    z-index: 1;
+} 
+.avatar-dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}  
+.avatar-dropdown-content a:hover {background-color: var(--brand-color);color: var(--brand-white);}
+.avatar-dropdown:hover .avatar-dropdown-content {display: block}
