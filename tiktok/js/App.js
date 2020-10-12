@@ -34,9 +34,9 @@ if (!tiktoksStorage || tiktoksStorage != JSON.stringify(tiktoks)) {
     tiktoksStorage = JSON.parse(tiktoksStorage);
 }
 
-loadUsuarios();
-loadHashtags();
-loadTiktoks();
+// loadUsuarios();
+// loadHashtags();
+// loadTiktoks();
 
 globalUsersToFollow = loadUsuariosToFollow;
 globalLoadTiktoks = renderListTiktoks;
