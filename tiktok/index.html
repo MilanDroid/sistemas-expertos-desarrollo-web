@@ -5,62 +5,215 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Bootstrap -->
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 
-    <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="css/all.css"><!--FontAwesome-->
+    <!--FontAwesome-->
+    <link rel="stylesheet" href="css/all.css">
     <link rel="stylesheet" href="css/main.css">
 
     <title>TikTok</title>
 </head>
 <body class="container-fluid bg-light">
-
-    <nav class="navbar navbar-light m-0 p-0 py-3 justify-content-between">
+    <nav class="navbar navbar-expand-md navbar-light justify-content-between">
         <a class="navbar-brand" href="#">
             <img src="assets/tiktoklogo2.svg" class="d-inline-block" alt="" href="#" loading="lazy">
             <img src="assets/tiktoklogo.svg" class="d-inline-block" alt="" href="#" loading="lazy">
         </a>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars text-brand" style="font-size: 1.6123rem;"></i>
         </button>
-
         
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
-                </li>
-            </ul>
+        <div class="collapse navbar-collapse justify-content-md-end" id="navbarsExampleDefault">
+            <form class="form-inline my-lg-0 text-center text-sm-left">
+                <div class="d-flex d-sm-none">
+                    <div class="col-12 pt-5 pb-3 text-md-left">
+                        <div class="row text-brand">
+                            <div class="col-1">
+                                <i class="fas fa-user" style="font-size: 1.2rem;"></i>
+                            </div>
+                            <div class="col text-left">
+                                <h5 class="mx-3 font-weight-bolder">For You</h5>
+                            </div>
+                        </div>
+                        <div class="row my-3 text-dark">
+                            <div class="col-1">
+                                <i class="fas fa-user-friends" style="font-size: 1.2rem;"></i>
+                            </div>
+                            <div class="col text-left">
+                                <h5 class="mx-3 font-weight-bolder">Following</h5>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-12">
+                                <p class="text-muted text-left">Log in to follow creators, like videos and view comments</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md text-nowrap mt-sm-0">
+                    <button type="button" class="form-control form-control-lg border-0 btn btn-light text-nowrap rounded-0 px-3"
+                    data-toggle="modal" data-target="#modal-tiktok" onclick="globalShowNewVideoModal()">                    
+                        <i class="fas fa-cloud-upload-alt align-middle" style="font-size: 1.6123rem;"></i>
+                        <span class="text-nowrap ml-sm-2 align-middle font-weight-bold">Publicar video</span>
+                    </button>
+                </div>
+                <div class="col-12 col-md my-3 my-sm-1">
+                    <button type="button" class="form-control form-control-lg border-0 btn btn-brand-white text-brand text-nowrap rounded-0 px-4 px-lg-5 my-3"
+                    data-toggle="modal" data-target="#modal-tiktok" id="btn-register-tiktok" onclick="globalShowNewUserModal()">Crear cuenta</button>
+                </div>
+                <div class="col-12 col-md my-3 my-sm-1">
+                    <button type="button" class="form-control form-control-lg border-0 btn btn-brand text-white rounded-0 px-4 px-lg-5"
+                    data-toggle="modal" data-target="#modal-tiktok" id="btn-login-tiktok" onclick="globalShowLoginModal()">LogIn</button>
+                </div>
+            </form>
         </div>
-        <span>
-            <i class="fas fa-cloud-upload-alt mx-sm-4 align-middle" style="font-size: 1.6123rem;"></i>
-            <button type="button" class="btn bg-brand text-white rounded-0 px-5">LogIn</button>
-            <button type="button" class="btn bg-brand text-white rounded-0 px-5">LogIn</button>
-        </span>
     </nav>
     
     <main class="border-top">
-    </main>
+        <div class="row justify-content-between">
+            <!-- Side Menu -->
+            <section class="col-6 order-2 order-xl-0 col-xl-2 py-5 text-center text-md-left d-none d-md-inline" id="side-menu">
+                <div class="row text-brand">
+                    <div class="col-1">
+                        <i class="fas fa-user" style="font-size: 1.2rem;"></i>
+                    </div>
+                    <div class="col text-left">
+                        <h5 class="mx-3 font-weight-bolder">For You</h5>
+                    </div>
+                </div>
+                <div class="row my-3 text-dark">
+                    <div class="col-1">
+                        <i class="fas fa-user-friends" style="font-size: 1.2rem;"></i>
+                    </div>
+                    <div class="col text-left">
+                        <h5 class="mx-3 font-weight-bolder">Following</h5>
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <div class="col-12">
+                        <p class="text-muted" id="btn-register-ban-tiktok-side-panel" >Log in to follow creators,<br>like videos and view comments</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <button type="button" class="border-0 btn btn-brand-white text-brand text-nowrap rounded-0 px-5 my-3"
+                        data-toggle="modal" data-target="#modal-tiktok" id="btn-register-tiktok-side-panel" onclick="globalShowNewUserModal()">Crear cuenta</button>
+                    </div>
+                </div>
+            </section>
 
-    <!-- Bootstrap -->
-    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
+            <!-- Tiktoks -->
+            <section class="col-12 order-0 order-xl-1 col-xl-6 py-5 text-center order-12 order-md-1" id="list-tiktoks">
+                <!-- Video -->
+                <!-- <div class="mb-4">
+                    <div class="row">
+                        <div class="col-2">
+                            <img src="assets/profile-pics/goku.jpg" srcset="assets/profile-pics/goku.jpg" class="rounded-circle avatar" alt="Avartar">
+                        </div>
+                        <div class="col-10 col-sm-6 text-left">
+                            <div><b id="usuario">@goku</b> <span class="text-muted mx-2" id="usuario-nick">Son Goku</span></div>
+                            <div>
+                                <b class="text-dark" id="hashtags">#Dog #Freezer</b>
+                                <span class="text-muted mx-2" id="descripcion">Ya basta freezer!</span>
+                                <p class="text-dark"><b class="title-video" id="hashtags">Cha la head cha la!</b></p>
+                            </div>
+                        </div>
+                        <div class="col-4 d-none d-sm-block">
+                            <button type="button" class="border-0 btn btn-brand-white text-brand text-nowrap rounded-0 px-4 my-2"><b>Follow</b></button>
+                        </div>
+                    </div>
+                    <div class="row mb-2 justify-content-center justify-content-md-start">
+                        <div class="col-2 d-none d-sm-block"></div>
+                        <div class="col-12 col-md-6 col-xl-4 text-center">
+                            <!-- <video controls autoplay loop playsinline class="card-app card-rounded" poster="assets/profile-pics/goku.jpg" loading="lazy"> -->
+                            <!-- <video controls loop playsinline class="card-app card-rounded" poster="assets/profile-pics/goku.jpg" loading="lazy">
+                                <source src="assets/videos/1.mp4" type="video/mp4">
+                                <source src="movie.ogg" type="video/ogg">
+                                Lo sentimos no puedes reproducir el video
+                            </video>
+                        </div>
+                        <div class="col-12 col-md-2 col-xl-2 mt-4">
+                            <div class="row justify-content-center">
+                                <div class="col-3 col-md-12">
+                                    <div class="rounded-circle avatar bg-gray position-relative"><i class="fas fa-heart text-dark social-interactions"></i></div>
+                                    <div class="rounded-circle avatar bg-none position-relative"><span class="social-interactions"><h6>2360</h6></span></div>
+                                </div>
+                                <div class="col-3 col-md-12">
+                                    <div class="rounded-circle avatar bg-gray position-relative"><i class="fas fa-comment-dots text-dark social-interactions"></i></div>
+                                    <div class="rounded-circle avatar bg-none position-relative"><span class="social-interactions"><h6>17</h6></span></div>
+                                </div>
+                                <div class="col-3 col-md-12">
+                                    <div class="rounded-circle avatar bg-gray position-relative"><i class="fas fa-reply text-dark social-interactions"></i></div>
+                                    <div class="rounded-circle avatar bg-none position-relative"><span class="social-interactions"><h6>29</h6></span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2 justify-content-center justify-content-md-start">
+                        <div class="col-2 d-none d-sm-block"></div>
+                        <div class="col-12 col-md-6 col-xl-4 text-center"><hr></div>
+                        <div class="col-12 col-md-2 col-xl-2 my-1"></div>
+                    </div>
+                </div> -->
+
+            </section>
+
+            <!-- Suggestions -->
+            <section class="col-6 order-1 order-xl-2 col-xl-3 py-5 order-1 order-md-12">
+
+                <!-- Sugerencias de usuarios -->
+                <div class="border card-rounded p-4">
+                    <h3><b>Suggested accounts</b></h3>
+                    <div id="list-suggestions">
+                        <!-- Usuario para seguir -->
+                        <!-- <div class="row my-4">
+                            <div class="col-2">
+                                <img src="assets/profile-pics/goku.jpg" srcset="assets/profile-pics/goku.jpg" class="rounded-circle avatar" alt="Avartar">
+                            </div>
+                            <div class="col-5 text-left">
+                                <div><span class="text-dark mx-2" id="usuario-nick"><b>Son Goku</b></span></div>
+                                <div class="text-muted">@goku</div>
+                            </div>
+                            <div class="col-5">
+                                <button type="button" class="border-0 btn btn-brand-white text-brand text-nowrap rounded-0 px-4 my-2"><b>Follow</b></button>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+
+                <!-- Hashtags -->
+                <div class="border card-rounded mt-5 p-4">
+                    <h3><b>Discover</b></h3>
+                    <div id="list-hashtags"></div>
+                </div>
+                
+            </section>
+        </div>
+    </main>
+    
+    <!-- Modal -->
+    <div class="modal-dialog modal-dialog-scrollable fade" data-backdrop="static" id="modal-tiktok" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal" role="document">
+            <div class="modal-content card-rounded py-2">
+                <div class="modal-header my-0 py-0 mt-5 text-center">
+                    <h3><b><span id="modal-title"></span></b></h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="modal-close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body pt-5 mb-md-5 mx-md-4" id="modal-body"></div>
+            </div>
+        </div>
+    </div>
 
     <script src="js/all.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery-3.4.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
     <script src="js/Globals.js"></script>
     <script type="module" src="js/App.js"></script>
 

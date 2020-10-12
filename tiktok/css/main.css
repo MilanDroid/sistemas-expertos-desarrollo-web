@@ -9,18 +9,23 @@
 
 :root {
  --brand-color: #fe2c55;
- --brand-dark-color: #bf3c30;
- --brand-disabled-color: #b55850;
- --brand-hover-dark-color: #ab3329;
+ --brand-dark-color: #de264a;
+ --brand-disabled-color: #d64763;
 
  --brand-background-color: #fce8e6;
  --brand-light-color: #fce8e6;
  --brand-white: #FFFFFF;
 
  --brand-dark: #404040;
- --brand-gray: #5d6165;
+ --brand-gray: #ebebeb;
  --brand-gray-tiny: #f0f2f3;
  --brand-light-gray: #fafafa;
+}
+
+*, *:not(body) {
+    transition-duration: .3s;
+    transition-timing-function: linear;
+    transition-delay: .05s;
 }
 
 body {
@@ -31,7 +36,6 @@ body {
     width: 100%;
 }
 
-button.bg-dark-brand:hover {background-color: var(--brand-hover-dark-color);}
 select, button, input {
     cursor: pointer;
     appearance: none;
@@ -51,6 +55,7 @@ button.bg-brand:hover, .bg-brand:focus, .bg-brand:active {background-color: var(
 button.bg-brand:disabled {background-color: var(--brand-disabled-color);}
 
 .bg-light-brand {background-color: var(--brand-background-color);}
+.bg-gray {background-color: var(--brand-gray);}
 .bg-gray-tiny {background-color: var(--brand-gray-tiny);}
 .bg-gray-light {background-color: var(--brand-light-gray);}
 
@@ -59,26 +64,32 @@ button.bg-brand:disabled {background-color: var(--brand-disabled-color);}
 
 .font-sofia-pro {font-family: 'Sofia-pro', Arial, Helvetica, sans-serif !important;}
 
-.card-app:hover {
-    background-color: var(--brand-color);
-    border: var(--brand-color);
-    color: var(--brand-white);
+.btn-brand {outline: 1px solid var(--brand-color) !important; background-color:  var(--brand-color) !important; color: var(--brand-white) !important;}
+.btn-brand-white {outline: 1px solid var(--brand-color) !important; background-color:  var(--brand-white); color: var(--brand-color);}
+.btn-brand:hover, .btn-brand-white:active, .btn-brand-white:focus {outline: 1px solid var(--brand-color) !important; background-color:  var(--brand-dark-color);}
+.btn-brand-white:hover, .btn-brand-white:active, .btn-brand-white:focus {outline: 1px solid var(--brand-color) !important; background-color:  var(--brand-dark-color); color: var(--brand-white) !important;}
+.btn-brand:active, .btn-brand-white:active {transform: scale(0.95);}
+
+.navbar-toggler:active, .navbar-toggler:focus, .navbar-toggler:hover {border: none; outline: none; transform: scale(0.85);}
+
+.card-app {
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    color: var(--brand-white) !important;
     cursor: pointer;
 }
-.card-app .icon-star {color: var(--brand-color);}
-.card-app:hover .icon-star {color: var(--brand-white);}
-.card-icon {font-size: 4em;}
-.card-rounded {border-radius: 30px;}
+.card-rounded {border-radius: 10px;}
 .card-rounded-top {border-radius: 30px 30px 0px 0px;}
 
 .rounded-pill-right {border-radius: 0px 30px 30px 0px;}
 
-.avatar {cursor: pointer}
+.avatar {cursor: pointer; width: 52px; height: 52px;}
 .avatar-dropdown {position: relative;display: inline-block;} 
 .avatar-dropdown-content {
     display: none;
     position: absolute;
-    background-color: var(--brand-white);
+    background-color: var(--brand-white) !important;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px var(--brand-dark);;
     z-index: 1;
@@ -89,5 +100,15 @@ button.bg-brand:disabled {background-color: var(--brand-disabled-color);}
     text-decoration: none;
     display: block;
 }  
-.avatar-dropdown-content a:hover {background-color: var(--brand-color);color: var(--brand-white);}
+.avatar-dropdown-content a:hover {background-color: var(--brand-color);color: var(--brand-white) !important;}
 .avatar-dropdown:hover .avatar-dropdown-content {display: block}
+
+.title-video {font-family: 'Sofia-pro';}
+
+.social-interactions {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 32px;
+}
