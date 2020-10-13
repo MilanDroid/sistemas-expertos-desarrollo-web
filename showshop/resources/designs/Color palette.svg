@@ -1,0 +1,16 @@
+<svg width="256" height="219" viewBox="0 0 256 219" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="256" height="219" fill="white"/>
+<rect x="22" y="166" width="40" height="40" rx="3" fill="white"/>
+<rect x="202" y="115" width="40" height="40" rx="3" fill="#FAFAFA"/>
+<rect x="142" y="115" width="40" height="40" rx="3" fill="#E0E0E0"/>
+<rect x="82" y="115" width="40" height="40" rx="3" fill="#EB5757"/>
+<rect x="22" y="115" width="40" height="40" rx="3" fill="#2F80ED"/>
+<rect x="202" y="64" width="40" height="40" rx="3" fill="#56CCF2"/>
+<rect x="142" y="64" width="40" height="40" rx="3" fill="#BDBDBD"/>
+<rect x="82" y="64" width="40" height="40" rx="3" fill="#828282"/>
+<rect x="22" y="64" width="40" height="40" rx="3" fill="#3F3D56"/>
+<rect x="202" y="13" width="40" height="40" rx="3" fill="#229D56"/>
+<rect x="142" y="13" width="40" height="40" rx="3" fill="#27AE60"/>
+<rect x="82" y="13" width="40" height="40" rx="3" fill="#E8BE40"/>
+<path d="M22 16C22 14.3431 23.3431 13 25 13H59C60.6569 13 62 14.3431 62 16V50C62 51.6569 60.6569 53 59 53H25C23.3431 53 22 51.6569 22 50V16Z" fill="#F2C94C"/>
+</svg>
