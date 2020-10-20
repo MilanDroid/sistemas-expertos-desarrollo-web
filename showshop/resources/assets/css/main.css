@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root {
+    --primary-color: #F2C94C;
+    --primary-dark-color: #E8BE40;
+    --secondary-color: #27AE60;
+    --secondary-dark-color: #229D56;
+    --text-color: #3F3D56;
+    --gray-color: #888888;
+    --muted-color: #BDBDBD;
+    --available-color: #56CCF2;
+    --links-color: #1976D2;
+    --alert-color: #EB5757;
+    --sub-background-color: #E0E0E0;
+    --background-color: #FAFAFA;
+    --white-color: #FFFFFF;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color) !important;
+}
+.bg-primary{background-color: var(--primary-color) !important;}
+.bg-secondary{background-color: var(--secondary-color) !important;}
+.bg-ligth{background-color: var(--background-color) !important;}
+.bg-sub-background{background-color: var(--sub-background-color) !important;}
+
+.lock-width {max-width: 1366px;}
+
+a.nav-link{font-weight: 500 !important;}
+
+main {
+    background-image: url("../images//backgrounds/Pattern.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 100vw;
+    height: calc(100vh - 4rem);
+}
