@@ -45,6 +45,8 @@
           <div class="modal-body">
             <div class="row">
               <div class="col-4">
+                <input type="hidden" name="id-app" id="id-app">
+                <input type="hidden" name="id-app" id="id-categoria">
                 <img id="imagen-app" class="img-fluid" src="img/app-icons/1.webp">
               </div>
               <div class="col-8">
@@ -81,22 +83,14 @@
             </div>
             <!--Fin Carousel-->
             <hr>
-            <div class="row comentario">
-              <div class="col-2">
-                <img src="img/user.webp" class="rounded-circle">
-              </div>
-              <div class="col-10">
-                <b>Usuario 1</b>
-                <p class="text-muted">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis repellendus quidem quod molestiae ipsum accusamus architecto non sed delectus fuga.</p>
-              </div>
-            </div>
+            <div id="comentarios-app" class="row comentario"></div>
             <!--Formulario nuevo comentario-->
             <div class="row">
                 <div class="col-10">
                   <input class="form-control" type="text" id="nuevoComentario" placeholder="Nuevo comentario">
                 </div>
                 <div class="col-2">
-                  <button type="button" class="btn btn-success"><i class="fa fa-paper-plane"></i></button>
+                  <button type="button" class="btn btn-success" onclick="agregarComentario()"><i class="fa fa-paper-plane"></i></button>
                 </div>
               </div>
           </div>
@@ -119,6 +113,7 @@
               <div class="col-8">
                 <form id="form-app">
                   Icono: <select class="form-control" name="icono" id="icono" onchange="visualizarImagen()"></select>
+                  Categoria: <select class="form-control" name="icono" id="categoria-app"></select>
                   <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Nombre aplicación">
                   <textarea class="form-control" type="text" name="descripcion" id="descripcion" placeholder="Descripción"></textarea>
                   <input class="form-control" type="text" name="desarrollador" id="desarrollador" placeholder="Desarrollador">
@@ -133,7 +128,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-success">Guardar</button>
+            <button type="button" class="btn btn-success" onclick="guardarAplicacion()">Guardar</button>
           </div>
         </div>
       </div>

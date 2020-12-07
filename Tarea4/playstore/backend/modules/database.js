@@ -6,7 +6,10 @@ var db = 'playstore';
 class Database{
     constructor(){
         //Promesas
-        mongoose.connect(`mongodb://${servidor}/${db}`)
+        mongoose.connect(`mongodb://${servidor}/${db}`, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        })
         .then(()=>{
             console.log('Se conecto a mongo');
         }).catch((error)=>{
