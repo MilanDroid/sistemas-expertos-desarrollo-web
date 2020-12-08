@@ -1,5 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { log } from 'console';
+import { CategoriasService } from './services/categorias.service';
+import { UsuariosService } from './services/usuarios.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +17,36 @@ export class AppComponent {
   @ViewChild ('modalCategorias') modalCategorias;
   @ViewChild ('modalUser') modalUser;
 
-  constructor(private modalService: NgbModal) {}
+  constructor(
+    private modalService: NgbModal,
+    private usuariosService:UsuariosService,
+    private categoriasService:CategoriasService
+  ) {}
+
+  usuarios:any = [];
+  categorias:any = [];
+
+  ngOnInit():void {
+    this.usuariosService.obtenerUsuarios().subscribe(
+      res => {
+        this.usuarios = res;
+        console.log('Usuarios', this.usuarios);
+      },
+      error => {
+        console.error(error);
+      }
+    );
+
+    this.categoriasService.obtenerCategorias().subscribe(
+      res => {
+        this.categorias = res;
+        console.log('Categorias', res);
+      },
+      error => {
+        console.error(error);
+      }
+    );
+  }
 
   verOrdenes() {
     console.log('verOrdenes');
