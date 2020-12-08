@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { log } from 'console';
 import { CategoriasService } from './services/categorias.service';
 import { UsuariosService } from './services/usuarios.service';
 
