@@ -7,8 +7,9 @@
 
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
           <form class="form-inline my-2 my-lg-0 ml-auto">
-          <select name="" id="usuarioActual" class="form-control mr-3" (change)="cambiarUsuario()">
-
+          <select name="" id="usuarioActual" class="form-control mr-3" #t (change)="cambiarUsuario(t.value)">
+            <option value=""></option>
+            <option *ngFor="let usuario of usuarios" value="{{usuario._id}}">{{usuario.nombre}} {{usuario.apellido}}</option>
           </select>
           <button class="btn btn-secondary my-2 my-sm-0 mr-2" type="button" (click)="verOrdenes()" data-toggle="modal" data-target="#modalUser">Ver Ordenes</button>
           <button type="button" class="btn btn-secondary my-2 my-sm-0" (click)="crearCategoria()">Agregar Nueva Categoria</button>
@@ -33,9 +34,8 @@
         </div>
     </div>
     <div id="contenedor-categorias" class="row mb-3">
-      <!-- Categoría de ejemplo -->
-      <div class="col-lg-3 col-md-4 col-sm-6 mt-2">
-        <div class="card-item card" style="background: #9CD0FA;" (click)="infoCategorias()">
+      <div class="col-lg-3 col-md-4 col-sm-6 mt-2" *ngFor="let categoria of categorias">
+        <div class="card-item card" style="background: #9CD0FA;" (click)="infoCategorias(categoria._id)">
           <div class="row">
               <div class="col mx-auto text-center m-3">
                   <img src="../assets/images/test.png" class="category-icon">
@@ -44,15 +44,14 @@
           </div>
           <div class="row m-3 mt-4">
               <section class="col">
-                  <h3 class="text-white font-weight-bolder">Farmacias</h3>
+                  <h3 class="text-white font-weight-bolder">{{ categoria.nombreCategoria }}</h3>
                   <p class="text-white" style="font-size: 13px;">
-                      3 Comercios
+                    {{ categoria.empresas.length }} Comercios
                   </p>
               </section>
           </div>
         </div>
       </div>
-      <!--  -->
     </div>
 </main><!-- /.container -->
 <br>
@@ -69,24 +68,36 @@
     </button>
   </div>
   <div class="modal-body">
-    <form>
+    <!-- <form [formGroup]="formularioRegistro">
         <div class="form-group">
-            <input type="text" class="form-control" id="txt-nombre" placeholder="Digite Nombre">
+            <input [ngClass]="{'input-error':nombreCategoria.invalid && (nombreCategoria.dirty || nombreCategoria.touched)}" formControlName="nombreCategoria" type="text" class="form-control" placeholder="Digite Nombre" required>
+            <div *ngIf="nombreCategoria.invalid && (nombreCategoria.dirty || nombreCategoria.touched)" class="error">
+              <span *ngIf="nombreCategoria.errors.required">Error el campo es obligatorio</span>
+            </div>
         </div>
         <div class="form-group">
-            <input type="text" class="form-control" id="txt-descripcion" placeholder="Digite Descripcion">
+            <input [ngClass]="{'input-error':descripcion.invalid && (descripcion.dirty || descripcion.touched)}" formControlName="descripcion"type="text" class="form-control" placeholder="Digite Descripcion">
+            <div *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)" class="error">
+              <span *ngIf="descripcion.errors.required">Error el campo es obligatorio</span>
+            </div>
         </div>
         <div class="form-group">
-            <input type="text" class="form-control" id="txt-color" placeholder="Digite Color">
+            <input [ngClass]="{'input-error':color.invalid && (color.dirty || color.touched)}" formControlName="color" type="text" class="form-control" placeholder="Digite Color">
+            <div *ngIf="color.invalid && (color.dirty || color.touched)" class="error">
+              <span *ngIf="color.errors.required">Error el campo es obligatorio</span>
+            </div>
         </div>
         <div class="form-group">
-            <input type="text" class="form-control" id="txt-icono" placeholder="Digite Icono">
+            <input [ngClass]="{'input-error':icono.invalid && (icono.dirty || icono.touched)}" formControlName="icono" type="text" class="form-control" placeholder="Digite Icono">
+            <div *ngIf="icono.invalid && (icono.dirty || icono.touched)" class="error">
+              <span *ngIf="icono.errors.required">Error el campo es obligatorio</span>
+            </div>
         </div>
-    </form>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Cerrar')">Guardar Categoria</button>
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Cerrar')">Cerrar</button>
+        <div class="modal-footer">
+          <button [disabled]="!formularioRegistro.valid" type="button" class="btn btn-outline-dark" (click)="modal.close('Cerrar');guardar()">Guardar Categoria</button>
+          <button type="button" class="btn btn-outline-dark" (click)="modal.close('Cerrar')">Cerrar</button>
+        </div>
+    </form> -->
   </div>
 </ng-template>
 
@@ -99,8 +110,19 @@
     </button>
   </div>
   <div class="modal-body">
-    <div id="zona-pedidos" class="modal-body">
-
+    <div id="zona-pedidos" class="modal-body" *ngIf="ordenes">
+      <div class="row" *ngFor="let orden of ordenes; let i = index" [attr.data-index]="i">
+        <div class="col-12"><h3>Orden #{{ i }}</h3></div>
+        <div class="col-12 my-3" style="background: #9CD0FA;">
+          <h5>{{ orden.nombreProducto }}</h5>
+        </div>
+        <div class="col-12">
+          <p>{{ orden.descripcion }}</p>
+        </div>
+        <div class="col-12">
+          <p>Cantidad: {{ orden.cantidad }} Precio: ${{ orden.precio }}</p>
+        </div>
+      </div>
     </div>
   </div>
   <div class="modal-footer">
@@ -117,8 +139,25 @@
     </button>
   </div>
   <div class="modal-body">
-    <div id="zona-categorias" class="modal-body row">
-
+    <div id="zona-categorias" class="modal-body row" *ngIf="categoria">
+      <div class="col-12"><h3>{{ categoria.nombreCategoria }}</h3></div>
+      <div class="col-12 my-3" style="background: #9CD0FA;">
+        <img src="{{ categoria.icono }}" alt="Icono">
+      </div>
+      <div class="col-12">
+        <p>{{ categoria.descripcion }}</p>
+      </div>
+      <!-- <h5 *ngIf="categoria.empresas">Empresas</h5> -->
+      <div class="col-12">
+        <ul>
+          <li *ngFor="let empresa of categoria.empresas">
+            {{empresa.nombreEmpresa}}
+            <ul>
+              <li *ngFor="let producto of empresa.productos">{{producto.nombreProducto}} - ${{producto.precio}}</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
   <div class="modal-footer">

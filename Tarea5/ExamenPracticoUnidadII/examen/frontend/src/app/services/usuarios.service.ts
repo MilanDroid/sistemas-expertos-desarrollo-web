@@ -12,4 +12,8 @@ export class UsuariosService {
   obtenerUsuarios():Observable<any> {
     return this.httpClient.get('http://localhost:8888/usuarios', {});
   }
+
+  verOrdenes(id):Observable<any> {
+    return this.httpClient.get(`http://localhost:8888/usuarios/${id}/ordenes`, {});
+  }
 }

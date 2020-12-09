@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, FormGroupName, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CategoriasService } from './services/categorias.service';
 import { UsuariosService } from './services/usuarios.service';
@@ -16,14 +17,24 @@ export class AppComponent {
   @ViewChild ('modalCategorias') modalCategorias;
   @ViewChild ('modalUser') modalUser;
 
+  ordenes:any = [];
+  usuarios:any = [];
+  categorias:any = [];
+  categoria:any = [];
+  usuario:string = null;
+
+  formularioRegistro = new FormGroup({
+    nombre:new FormControl ('', [Validators.required]),
+    descripcion:new FormControl('', [Validators.required]),
+    color:new FormControl('', [Validators.required]),
+    icono:new FormControl('', [Validators.required])
+  });
+
   constructor(
     private modalService: NgbModal,
     private usuariosService:UsuariosService,
     private categoriasService:CategoriasService
   ) {}
-
-  usuarios:any = [];
-  categorias:any = [];
 
   ngOnInit():void {
     this.usuariosService.obtenerUsuarios().subscribe(
@@ -48,23 +59,58 @@ export class AppComponent {
   }
 
   verOrdenes() {
-    console.log('verOrdenes');
-    this.modalService.open(this.modalPedidos, {size: 'lg'});
+    if (!this.usuario) {
+      console.error('No se a seleccionado un usuario', );
+    } else {
+      console.log('verOrdenes', );
+
+      this.usuariosService.verOrdenes(this.usuario).subscribe(
+        res => {
+          this.ordenes = res.ordenes;
+          console.log('Ordenes', this.ordenes);
+        },
+        error => {
+          console.error(error);
+        }
+      );
+      this.modalService.open(this.modalPedidos, {size: 'lg'});
+    }
   }
   crearCategoria() {
     console.log('crearCategoria');
     this.modalService.open(this.modalCreacionCategoria, {size: 'lg'});
   }
   guardar() {
-    console.log('guardar');
+    console.log('Formulario válido:' , this.formularioRegistro.valid);
+    this.categoriasService.guardar(this.formularioRegistro).subscribe(
+      res => {
+        this.categoria = res;
+        console.log('Categorias', this.categoria);
+      },
+      error => {
+        console.error(error);
+      }
+    );
   }
 
-  cambiarUsuario() {
-    console.log('cambiar usuario');
+  cambiarUsuario(id) {
+    this.usuario = id;
+    console.log('cambiar usuario', id);
   }
 
-  infoCategorias() {
-    console.log('ver información de categoría');
+  infoCategorias(id) {
+    console.log('ver información de categoría', id);
+
+    this.categoriasService.infoCategorias(id).subscribe(
+      res => {
+        this.categoria = res;
+        console.log('Categorias', this.categoria);
+      },
+      error => {
+        console.error(error);
+      }
+    );
+
     this.modalService.open(this.modalCategorias, {size: 'xl'});
   }
 }
